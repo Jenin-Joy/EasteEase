@@ -1,0 +1,74 @@
+{% extends 'User/Header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>SL NO</td>
+                <td>Location</td>
+                <td>Amount</td>
+                <td>From Date</td>
+                <td>To Date</td>
+                <td>Photo</td>
+                <td>Place</td>
+                <td>Category</td>
+                <td>Owner</td>
+                <td>Action</td>
+
+            </tr>
+            {% for i in book %}
+            <tr>
+                <td> {{forloop.counter}}</td>
+                <td> {{i.rentproperty.rentproperty_location}}</td>
+                <td> {{i.rentproperty.rentproperty_type}}</td>
+                <td> {{i.rentbooking_fdate}}</td>
+                <td> {{i.rentbooking_tdate}}</td>
+                <td> <img src="{{i.rentproperty.rentproperty_photo.url}}" alt="" width="200px"></td>
+                <td> {{i.rentproperty.place.place_name}}</td>
+                <td> {{i.rentproperty.category.category_name}}</td>
+                <td>
+                    {{i.rentproperty.owner.owner_name}} <br>
+                    {{i.rentproperty.owner.owner_email}}<br>
+                    {{i.rentproperty.owner.owner_contact}}<br>
+                    <a href="{% url 'User:Complaint' i.rentproperty.owner.id %}">Complaint</a>
+                </td>
+                </td>
+                <td>
+                    {% if i.rentbooking_status == 0 %}
+                    Pending..
+                    {% elif i.rentbooking_status == 1 %}
+                    Accepted
+                    <a href="{% url 'User:chatpage' i.rentproperty.owner.id %}">Chat</a>
+                    {% elif i.rentbooking_status == 2 %}
+                    Rejected
+                    {% endif %}
+                </td>
+                {%endfor%}
+</body>
+
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'Guest:Ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>
+{% endblock content %}

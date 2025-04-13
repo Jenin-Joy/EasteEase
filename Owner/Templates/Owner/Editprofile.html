@@ -1,0 +1,42 @@
+{% extends 'Owner/Header.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="2">
+        <tr>
+            <td>Name</td>
+            <td><input type ="text" name="owner_name" value="{{owner.owner_name}}"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type ="email" name="owner_email" value="{{owner.owner_email}}"></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type ="text" name="owner_contact" value="{{owner.owner_contact}}"></td>
+        </tr>
+       
+        
+        <tr>
+            <td>Address</td>
+            <td><textarea rows="4" cols="6" name="owner_address" value="{{owner.owner_address}}"></textarea></td>
+        </tr> 
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Edit"></td>
+        </tr>   
+    </table>
+</form>
+
+</body>
+</html>
+
+{% endblock %}

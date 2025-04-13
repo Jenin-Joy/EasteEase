@@ -1,0 +1,69 @@
+{% extends 'Owner/Header.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>SL NO</td>
+                <td>Location</td>
+                <td>Type</td>
+                <td>Price</td>
+                <td>Photo</td>
+                <td>Place</td>
+                <td>Category</td>
+                <td>Action</td>
+            </tr>
+            {% for i in sellbook %}
+            <tr>
+                <td> {{forloop.counter}}</td>
+                <td> {{i.bookproperty_sellproperty_id.sellproperty_location}}</td>
+                <td> {{i.bookproperty_sellproperty_id.sellproperty_type}}</td>
+                <td> {{i.bookproperty_sellproperty_id.sellproperty_price}}</td>
+                <td> <img src="{{i.bookproperty_sellproperty_id.sellproperty_photo.url}}" alt="" width="100px"></td>
+                <td> {{i.bookproperty_sellproperty_id.place.place_name}}</td>
+                <td> {{i.bookproperty_sellproperty_id.category.category_name}}</td>
+
+                <td>
+                    {% if i.bookproperty_status == 0 %}
+                    <a href="{% url 'Owner:sellverification' i.id 1 %}">Accept</a>
+                    <a href="{% url 'Owner:sellverification' i.id 2 %}">Reject</a>
+                    {% elif i.bookproperty_status == 1 %}
+                    Accepted
+                    <a href="{% url 'Owner:chatpage' i.bookpropertyuser_id.id %}">Chat</a>
+                    {% elif i.bookproperty_status == 2 %}
+                    Rejected
+                    {% endif %}
+                </td>
+                {%endfor%}
+</body>
+
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'Guest:Ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>
+
+
+{% endblock %}

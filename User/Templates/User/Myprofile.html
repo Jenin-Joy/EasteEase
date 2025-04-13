@@ -1,0 +1,49 @@
+{% extends 'User/Header.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="1">
+        <tr align="center">
+            <td colspan="2"> <img src="{{user.user_photo.url}}" style="width: 100px;"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{user.user_name}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{user.user_email}}</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>{{user.user_contact}}</td>
+        </tr>
+       
+        
+        <tr>
+            <td>Address</td>
+            <td>{{user.user_address}}</td>
+        </tr>
+        <tr>
+            <td>District</td>
+            <td>{{user.user_place.district.district_name}}</td>
+        </tr>
+        <tr>
+            <td>Place</td>
+            <td>{{user.user_place.place_name}} </td>
+        </tr>
+        <a href="{% url 'User:Editprofile' %}">Edit Profile</a>
+        <a href="{% url 'User:Changepassword' %}">Change Password</a>
+    </table>
+</form>
+</body>
+</html>
+{% endblock content %}

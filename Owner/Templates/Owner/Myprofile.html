@@ -1,0 +1,48 @@
+{% extends 'Owner/Header.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="1">
+
+        <tr>
+            <td>Name</td>
+            <td>{{owner.owner_name}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{owner.owner_email}}</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>{{owner.owner_contact}}</td>
+        </tr>
+       
+        
+        <tr>
+            <td>Address</td>
+            <td>{{owner.owner_address}}</td>
+        </tr>
+        <tr>
+            <td>District</td>
+            <td>{{owner.owner_place.district.district_name}}</td>
+        </tr>
+        <tr>
+            <td>Place</td>
+            <td>{{owner.owner_place.place_name}} </td>
+        </tr>
+        <a href="{% url 'Owner:Editprofile' %}">Edit Profile</a>
+        <a href="{% url 'Owner:Changepassword' %}">Change Password</a>
+    </table>
+</form>
+</body>
+</html>
+{% endblock %}

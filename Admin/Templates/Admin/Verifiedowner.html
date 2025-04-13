@@ -1,0 +1,37 @@
+{% extends 'Admin/Header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <tr>
+            <th>SL No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>District</th>
+            <th>Place</th>
+            <th>Action</th>
+        </tr>
+        {% for i in owners %}
+        <tr>
+            <td> {{forloop.counter}}</td>
+            <td> {{i.owner_name}}</td>
+            <td> {{i.owner_email}}</td>
+            <td> {{i.owner_contact}}</td>
+            <td> {{i.owner_address}}</td>
+            <td> {{i.owner_place.district.district_name}}</td>
+            <td> {{i.owner_place.place_name}}</td>
+            <td><a href="{% url 'Admin:Reject' i.id %}">Reject</a></td>
+            {% endfor %}
+    </table>
+</body>
+</html>           
+
+{% endblock %}

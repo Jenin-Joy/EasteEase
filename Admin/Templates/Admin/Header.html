@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- [Head] start -->
+
+<head>
+  <!-- [Google Font] Family -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+    id="main-font-link">
+  <!-- [Tabler Icons] https://tablericons.com -->
+  <link rel="stylesheet" href="{% static 'Admin/dist/assets/fonts/tabler-icons.min.css' %}">
+  <!-- [Feather Icons] https://feathericons.com -->
+  <link rel="stylesheet" href="{% static 'Admin/dist/assets/fonts/feather.css' %}">
+  <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+  <link rel="stylesheet" href="{% static 'Admin/dist/assets/fonts/fontawesome.css' %}">
+  <!-- [Material Icons] https://fonts.google.com/icons -->
+  <link rel="stylesheet" href="{% static 'Admin/dist/assets/fonts/material.css' %}">
+  <!-- [Template CSS Files] -->
+  <link rel="stylesheet" href="{% static 'Admin/dist/assets/css/style.css' %}" id="main-style-link">
+  <link rel="stylesheet" href="{% static 'Admin/dist/assets/css/style-preset.css' %}">
+
+</head>
+<!-- [Head] end -->
+<!-- [Body] Start -->
+
+<body @@bodySetup>
+  <!-- [ Pre-loader ] start -->
+  <div class="loader-bg">
+    <div class="loader-track">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+  <!-- [ Pre-loader ] End -->
+
+  <!-- [ Sidebar Menu ] start -->
+  <nav class="pc-sidebar">
+    <div class="navbar-wrapper">
+      <div class="m-header">
+        <a href=" 'Admin/src/dashboard/index.html" class="b-brand text-primary">
+          <!-- ========   Change your logo from here   ============ -->
+          <img src=" {% static 'Admin/src/assets/images/logo-dark.svg' %}" class="img-fluid logo-lg" alt="logo">
+        </a>
+      </div>
+      <div class="navbar-content">
+        <ul class="pc-navbar">
+          <li class="pc-item">
+            <a href=" {% url 'Admin:Homepage' %}" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
+              <span class="pc-mtext">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="pc-item pc-caption">
+            <label>Basic Datas</label>
+            <i class="ti ti-dashboard"></i>
+          </li>
+          <li class="pc-item">
+            <a href="{% url 'Admin:district' %}" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-typography"></i></span>
+              <span class="pc-mtext">District</span>
+            </a>
+          </li>
+          <li class="pc-item">
+            <a href="{% url 'Admin:place' %}" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-color-swatch"></i></span>
+              <span class="pc-mtext">Place</span>
+            </a>
+          </li>
+
+
+          <li class="pc-item pc-caption">
+            <label>Users</label>
+            <i class="ti ti-news"></i>
+          </li>
+          <li class="pc-item">
+            <a href="{% url 'Admin:Ownerverification' %}" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-lock"></i></span>
+              <span class="pc-mtext">Owner Verification</span>
+            </a>
+          </li>
+
+
+          <li class="pc-item pc-caption">
+            <label>Complaint and Feedbacks</label>
+            <i class="ti ti-brand-chrome"></i>
+          </li>
+
+          <li class="pc-item">
+            <a href="{% url 'Admin:viewcomplaint' %}" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
+              <span class="pc-mtext">View Complaints</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- [ Sidebar Menu ] end -->
+  <!-- [ Header Topbar ] start -->
+  <header class="pc-header">
+    <div class="header-wrapper"><!-- [Mobile Media Block] start -->
+      
+      <!-- [Mobile Media Block end] -->
+      <div class="ms-auto">
+        <ul class="list-unstyled">
+          
+          <li class="dropdown pc-h-item header-user-profile">
+            <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+              <img src="{% static 'Admin/dist/assets/images/user/avatar-2.jpg' %}" alt="user-image" class="user-avtar">
+              
+            </a>
+            <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+              
+              
+              <div class="tab-content" id="mysrpTabContent">
+                <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1"
+                  tabindex="0">
+                  
+                  <a href="{% url 'Admin:logout' %}" class="dropdown-item">
+                    <i class="ti ti-power"></i>
+                    <span>Logout</span>
+                  </a>
+                </div>
+                <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2" tabindex="0">
+                  <a href="#!" class="dropdown-item">
+                    <i class="ti ti-help"></i>
+                    <span>Support</span>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <i class="ti ti-user"></i>
+                    <span>Account Settings</span>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <i class="ti ti-lock"></i>
+                    <span>Privacy Center</span>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <i class="ti ti-messages"></i>
+                    <span>Feedback</span>
+                  </a>
+                  <a href="#!" class="dropdown-item">
+                    <i class="ti ti-list"></i>
+                    <span>History</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- [ Header ] end -->
+
+
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+        <div class="pc-content">
+
+            {% block content %}
+            {% endblock %}
+
+
+        </div>
+    </div>
+
+   
+
+
+
+    <!-- [Page Specific JS] start -->
+    <script src="{% static 'Admin/dist/assets/js/plugins/apexcharts.min.js' %}"></script>
+    <script src="{% static 'Admin/dist/assets/js/pages/dashboard-default.js' %}"></script>
+    <!-- [Page Specific JS] end -->
+    <!-- Required Js -->
+    <script src="{% static 'Admin/dist/assets/js/plugins/popper.min.js' %}"></script>
+    <script src="{% static 'Admin/dist/assets/js/plugins/simplebar.min.js' %}"></script>
+    <script src="{% static 'Admin/dist/assets/js/plugins/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Admin/dist/assets/js/fonts/custom-font.js' %}"></script>
+    <script src="{% static 'Admin/dist/assets/js/pcoded.js' %}"></script>
+    <script src="{% static 'Admin/dist/assets/js/plugins/feather.min.js' %}"></script>
+
+
+
+</body>
+<!-- [Body] end -->
+
+</html>

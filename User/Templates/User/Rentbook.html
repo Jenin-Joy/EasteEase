@@ -1,0 +1,44 @@
+{% extends 'User/Header.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><form method="post">
+    {% csrf_token %}
+    <table border="2">
+        <tr>
+            <th>From Date</th>
+            <td><input type="date" name="Fromdate" id="Fromdate"  ></td>
+        </tr>
+        <tr>    
+            <th>To Date</th>
+            <td><input type="date" name="Todate" id="Todate" onchange="checkAmount('{{amount}}')" ></td>
+        </tr>
+        <tr>
+            <td>Amount</td>
+            <td><input type="text" name="txt_amount" id="txt_amount" readonly></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Submit"></td>
+        </tr>
+    
+    </table>
+</form>
+
+</body>
+</html>
+<script>
+    function checkAmount(amount){
+        var fdate = new Date(document.getElementById("Fromdate").value)
+        var tdate = new Date(document.getElementById("Todate").value)
+        var diff = (tdate - fdate) / (1000 * 3600 * 24);
+        var amt = diff * amount
+        document.getElementById("txt_amount").value = amt        
+    }
+</script>
+{% endblock content %}

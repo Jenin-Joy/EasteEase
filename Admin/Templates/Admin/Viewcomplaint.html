@@ -1,0 +1,35 @@
+
+
+{% extends 'Admin/Header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="1">
+        <tr>
+            <td>SL NO</td>
+            <td>User Details</td>
+            <td>Content</td>
+            <td>Action</td>
+        </tr>
+        {% for i in complaint %}
+        <tr>
+            <td> {{forloop.counter}}</td>
+            <td>
+                {{i.user.user_name}}
+                {{i.user.email}}
+            </td>
+            <td>{{i.complaint_title}}</td>
+            <td><a href="{% url 'Admin:reply' i.id %}">Reply</a></td>
+            
+    {%endfor%}
+</body>
+</html>
+
+{% endblock %}
